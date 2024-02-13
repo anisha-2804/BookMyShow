@@ -10,9 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.springboot.bookmyshow.dao.UserDao;
-import com.springboot.bookmyshow.dto.AdminDto;
 import com.springboot.bookmyshow.dto.UserDto;
-import com.springboot.bookmyshow.entity.Admin;
 import com.springboot.bookmyshow.entity.User;
 import com.springboot.bookmyshow.util.ResponseStructure;
 
@@ -65,7 +63,7 @@ public class UserService
 		return null;
 	}
 	
-	public ResponseEntity<ResponseStructure<UserDto>> updateAdmin(User user,int userId)
+	public ResponseEntity<ResponseStructure<UserDto>> updateUser(User user,int userId)
 	{
 		User user1 = userDao.updateUser(user, userId);
 		ResponseStructure<UserDto> structure = new ResponseStructure<UserDto>();
@@ -80,7 +78,7 @@ public class UserService
 		return null;
 	}
 	
-	public ResponseEntity<ResponseStructure<UserDto>> adminLogin(String userEmail,String userPassword)
+	public ResponseEntity<ResponseStructure<UserDto>> userLogin(String userEmail,String userPassword)
 	{
 		ResponseStructure<UserDto> structure = new ResponseStructure<UserDto>();
 		List<User> userList = new ArrayList<User>();

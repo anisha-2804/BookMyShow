@@ -38,7 +38,7 @@ public class TheatreService
 		return null;
 	}
 	
-	public ResponseEntity<ResponseStructure<Theatre>> deleteShow(int theatreId)
+	public ResponseEntity<ResponseStructure<Theatre>> deleteTheatre(int theatreId)
 	{
 		ResponseStructure<Theatre> structure = new ResponseStructure<Theatre>();
 		Theatre theatre = theatreDao.deleteTheatre(theatreId);
@@ -51,7 +51,7 @@ public class TheatreService
 		return null;
 	}
 	
-	public ResponseEntity<ResponseStructure<Theatre>> updateShow(Theatre theatre, int theatreId)
+	public ResponseEntity<ResponseStructure<Theatre>> updateTheatre(Theatre theatre, int theatreId)
 	{
 		ResponseStructure<Theatre> structure = new ResponseStructure<Theatre>();
 		Theatre exTheatre = theatreDao.updateTheatre(theatre, theatreId);

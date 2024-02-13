@@ -2,10 +2,12 @@ package com.springboot.bookmyshow.entity;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Component
@@ -18,6 +20,15 @@ public class User
 	private long userContact;
 	private String userEmail;
 	private String userPassword;
+	@OneToMany(cascade = CascadeType.ALL)
+	private Movie movie;
+	
+	public Movie getMovie() {
+		return movie;
+	}
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
 	public int getUserId() {
 		return userId;
 	}

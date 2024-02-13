@@ -4,10 +4,12 @@ import java.time.LocalTime;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Component
@@ -20,6 +22,16 @@ public class Movie
 	private String movieGenre;
 	private LocalTime movieDuration;
 	private double movieRating;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private Seat seat;
+	
+	public Seat getSeat() {
+		return seat;
+	}
+	public void setSeat(Seat seat) {
+		this.seat = seat;
+	}
 	public int getMovieId() {
 		return movieId;
 	}

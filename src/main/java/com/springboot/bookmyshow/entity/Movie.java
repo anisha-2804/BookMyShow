@@ -1,15 +1,15 @@
 package com.springboot.bookmyshow.entity;
 
 import java.time.LocalTime;
-
 import org.springframework.stereotype.Component;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Component
@@ -18,19 +18,25 @@ public class Movie
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private int movieId;
+	
+	@NotNull(message = "Movie title cannot be null")
+	@NotBlank(message = "Movie title cannot be blank")
 	private String movieTitle;
+	
+	@NotNull(message = "Movie genre cannot be null")
+	@NotBlank(message = "Movie genre cannot be blank")
 	private String movieGenre;
 	private LocalTime movieDuration;
 	private double movieRating;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private Seat seat;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Shows show;
 	
-	public Seat getSeat() {
-		return seat;
+	public Shows getShow() {
+		return show;
 	}
-	public void setSeat(Seat seat) {
-		this.seat = seat;
+	public void setShow(Shows show) {
+		this.show = show;
 	}
 	public int getMovieId() {
 		return movieId;

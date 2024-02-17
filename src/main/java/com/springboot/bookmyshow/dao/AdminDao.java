@@ -52,5 +52,9 @@ public class AdminDao
 		return admins;
 		
 	}
+	
+	public Admin adminLogin(String adminEmail,String adminPassword) {
+		return adminRepo.adminLogin(adminEmail, adminPassword);
+	}
 
 }

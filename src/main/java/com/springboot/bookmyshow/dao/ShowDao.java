@@ -3,38 +3,40 @@ package com.springboot.bookmyshow.dao;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.springboot.bookmyshow.entity.Show;
+import org.springframework.stereotype.Repository;
+import com.springboot.bookmyshow.entity.Shows;
 import com.springboot.bookmyshow.repository.ShowRepo;
 
+@Repository
 public class ShowDao 
 {
 	@Autowired
 	ShowRepo showRepo;
 	
-	public Show saveShow(Show show)
+	public Shows saveShow(Shows show)
 	{
 		return showRepo.save(show);
 	}
 	
-	public Show findShow(int showId)
+	public Shows findShow(int showId)
 	{
-		Optional<Show> opShow = showRepo.findById(showId);
+		Optional<Shows> opShow = showRepo.findById(showId);
 		if(opShow.isPresent()) {
 			return opShow.get();
 		}
 		return null;
 	}
 	
-	public Show deleteShow(int showId)
+	public Shows deleteShow(int showId)
 	{
-		Show show = findShow(showId);
+		Shows show = findShow(showId);
 		showRepo.delete(show);
 		return show;
 	}
 	
-	public Show updateShow(Show show,int showId)
+	public Shows updateShow(Shows show,int showId)
 	{
-		Show exShow = findShow(showId);
+		Shows exShow = findShow(showId);
 		if(exShow != null) {
 			show.setShowId(showId);
 			return showRepo.save(show);

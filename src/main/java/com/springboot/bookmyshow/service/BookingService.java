@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.springboot.bookmyshow.dao.BookingDao;
 import com.springboot.bookmyshow.entity.Booking;
+import com.springboot.bookmyshow.exception.BookingNotFound;
 import com.springboot.bookmyshow.util.ResponseStructure;
 
 @Service
@@ -35,7 +36,7 @@ public class BookingService
 			structure.setData(booking);
 			return new ResponseEntity<ResponseStructure<Booking>>(structure,HttpStatus.FOUND);
 		}
-		return null;
+		throw new BookingNotFound("Booking not Found with the given id...Please Enter a valid booking Id");
 	}
 	
 	public ResponseEntity<ResponseStructure<Booking>> CancelBooking(int bookingId)
@@ -48,7 +49,7 @@ public class BookingService
 			structure.setData(booking);
 			return new ResponseEntity<ResponseStructure<Booking>>(structure,HttpStatus.OK);
 		}
-		return null;
+		throw new BookingNotFound("Booking not Found with the given id...Please Enter a valid booking Id");
 	}
 	
 

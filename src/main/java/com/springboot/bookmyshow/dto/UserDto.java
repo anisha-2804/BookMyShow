@@ -19,6 +19,19 @@ public class UserDto
 	public String getUserEmail() {
 		return userEmail;
 	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public void setUserContact(long userContact) {
+		this.userContact = userContact;
+	}
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	
 	
 	
 

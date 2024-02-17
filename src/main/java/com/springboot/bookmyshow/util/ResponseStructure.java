@@ -8,6 +8,7 @@ public class ResponseStructure<T>
 	private String message;
 	private int status;
 	private T data;
+	
 	public String getMessage() {
 		return message;
 	}

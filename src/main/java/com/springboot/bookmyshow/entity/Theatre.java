@@ -1,5 +1,7 @@
 package com.springboot.bookmyshow.entity;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.springboot.bookmyshow.theatreEnum.TheatreName;
@@ -10,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Component
@@ -19,14 +22,14 @@ public class Theatre
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int theatreId;
 	private String theatreLocation;
+	
+	@Positive(message = "enter a valid Capacity")
 	private int theatreCapacity;
+	
 	private TheatreName theatreName;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private Seat seat;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private Show show;
+	private List<Shows> show;
 	
 	public TheatreName getTheatreName() {
 		return theatreName;
@@ -34,18 +37,11 @@ public class Theatre
 	public void setTheatreName(TheatreName theatreName) {
 		this.theatreName = theatreName;
 	}
-	
-	public Show getShow() {
+	public List<Shows> getShow() {
 		return show;
 	}
-	public void setShow(Show show) {
+	public void setShow(List<Shows> show) {
 		this.show = show;
-	}
-	public Seat getSeat() {
-		return seat;
-	}
-	public void setSeat(Seat seat) {
-		this.seat = seat;
 	}
 	public int getTheatreId() {
 		return theatreId;

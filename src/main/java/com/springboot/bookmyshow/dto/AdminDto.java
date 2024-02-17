@@ -16,6 +16,17 @@ public class AdminDto
 	public String getAdminEmail() {
 		return adminEmail;
 	}
+	public void setAdminId(int adminId) {
+		this.adminId = adminId;
+	}
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+	public void setAdminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
+	}
+	
+	
 
 	
 	

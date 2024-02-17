@@ -2,6 +2,7 @@ package com.springboot.bookmyshow.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,8 @@ import com.springboot.bookmyshow.entity.Admin;
 import com.springboot.bookmyshow.service.AdminService;
 import com.springboot.bookmyshow.util.ResponseStructure;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("admin")
 public class AdminController 
@@ -24,7 +27,7 @@ public class AdminController
 	AdminService adminService;
 	
 	@PostMapping
-	public ResponseEntity<ResponseStructure<AdminDto>> saveLaptop(@RequestBody Admin admin)
+	public ResponseEntity<ResponseStructure<AdminDto>> saveLaptop(@Valid @RequestBody Admin admin, BindingResult result)
 	{
 		return adminService.saveAdmin(admin);
 	}
@@ -36,21 +39,21 @@ public class AdminController
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<ResponseStructure<AdminDto>> deleteLaptop(@RequestParam int adminId)
+	public ResponseEntity<ResponseStructure<AdminDto>> deleteLaptop(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestParam int adminId)
 	{
-		return adminService.deleteAdmin(adminId);
+		return adminService.deleteAdmin(adminEmail, adminPassword, adminId);
 	}
 	
 	@PutMapping
-	public ResponseEntity<ResponseStructure<AdminDto>> updateLaptop(@RequestBody Admin admin,@RequestParam int adminId)
+	public ResponseEntity<ResponseStructure<AdminDto>> updateLaptop(@RequestParam String adminEmail,@RequestParam String adminPassword,@Valid @RequestBody Admin admin,@RequestParam int adminId,BindingResult result)
 	{
-		return adminService.updateAdmin(admin, adminId);
+		return adminService.updateAdmin(adminEmail, adminPassword, admin, adminId);
 	}
 	
-	@GetMapping
-	public ResponseEntity<ResponseStructure<AdminDto>> adminLogin(@RequestParam String adminEmail,@RequestParam String adminPassword)
+	@PutMapping("assignUserToAdmin")
+	public ResponseEntity<ResponseStructure<Admin>> assignUserToAdmin(@RequestParam String adminEmail,@RequestParam String adminPassword)
 	{
-		return adminService.adminLogin(adminEmail, adminPassword);
+		return adminService.assignUserToAdmin(adminEmail, adminPassword);
 	}
 
 }

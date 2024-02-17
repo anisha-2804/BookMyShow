@@ -23,9 +23,9 @@ public class MovieController
 	MovieService movieService;
 	
 	@PostMapping
-	public ResponseEntity<ResponseStructure<Movie>> saveMovie(@RequestBody Movie movie)
+	public ResponseEntity<ResponseStructure<Movie>> saveMovie(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestBody Movie movie)
 	{
-		return movieService.saveMovie(movie);
+		return movieService.saveMovie(adminEmail, adminPassword, movie);
 	}
 	
 	@GetMapping
@@ -35,15 +35,15 @@ public class MovieController
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<ResponseStructure<Movie>> deleteMovie(@RequestParam int movieId)
+	public ResponseEntity<ResponseStructure<Movie>> deleteMovie(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestParam int movieId)
 	{
-		return movieService.deleteMovie(movieId);
+		return movieService.deleteMovie(adminEmail, adminPassword, movieId);
 	}
 	
 	@PutMapping
-	public ResponseEntity<ResponseStructure<Movie>> updateMovie(@RequestBody Movie movie,@RequestParam int movieId)
+	public ResponseEntity<ResponseStructure<Movie>> updateMovie(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestBody Movie movie,@RequestParam int movieId)
 	{
-		return movieService.updateMovie(movie, movieId);
+		return movieService.updateMovie(adminEmail, adminPassword, movie, movieId);
 	}
 
 }

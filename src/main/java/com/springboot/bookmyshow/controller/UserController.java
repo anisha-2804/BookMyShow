@@ -36,15 +36,15 @@ public class UserController
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<ResponseStructure<UserDto>> deleteUser(@RequestParam int userId)
+	public ResponseEntity<ResponseStructure<UserDto>> deleteUser(@RequestParam String userEmail,@RequestParam String userPassword,@RequestParam int userId)
 	{
-		return userService.deleteUser(userId);
+		return userService.deleteUser(userEmail, userPassword, userId);
 	}
 	
 	@PutMapping
-	public ResponseEntity<ResponseStructure<UserDto>> updateUser(@RequestBody User user,@RequestParam int userId)
+	public ResponseEntity<ResponseStructure<UserDto>> updateUser(@RequestParam String userEmail,@RequestParam String userPassword,@RequestBody User user,@RequestParam int userId)
 	{
-		return userService.updateUser(user, userId);
+		return userService.updateUser(userEmail, userPassword, user, userId);
 	}
 
 }

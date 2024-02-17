@@ -23,9 +23,9 @@ public class SeatController
 	SeatService seatService;
 	
 	@PostMapping
-	public ResponseEntity<ResponseStructure<Seat>> saveSeat(@RequestBody Seat seat)
+	public ResponseEntity<ResponseStructure<Seat>> saveSeat(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestBody Seat seat)
 	{
-		return seatService.saveSeat(seat);
+		return seatService.saveSeat(adminEmail, adminPassword, seat);
 	}
 	
 	@GetMapping
@@ -35,15 +35,15 @@ public class SeatController
 	} 
 	
 	@DeleteMapping
-	public ResponseEntity<ResponseStructure<Seat>> deleteSeat(@RequestParam int seatId)
+	public ResponseEntity<ResponseStructure<Seat>> deleteSeat(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestParam int seatId)
 	{
-		return seatService.deleteSeat(seatId);
+		return seatService.deleteSeat(adminEmail, adminPassword, seatId);
 	}
 	
 	@PutMapping
-	public ResponseEntity<ResponseStructure<Seat>> updateSeat(@RequestBody Seat seat,@RequestParam int seatId)
+	public ResponseEntity<ResponseStructure<Seat>> updateSeat(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestBody Seat seat,@RequestParam int seatId)
 	{
-		return seatService.updateSeat(seat, seatId);
+		return seatService.updateSeat(adminEmail, adminPassword, seat, seatId);
 	}
 
 }

@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.springboot.bookmyshow.entity.Show;
+import com.springboot.bookmyshow.entity.Shows;
 import com.springboot.bookmyshow.service.ShowService;
 import com.springboot.bookmyshow.util.ResponseStructure;
 
@@ -23,27 +22,27 @@ public class ShowController
 	ShowService showService;
 	
 	@PostMapping
-	public ResponseEntity<ResponseStructure<Show>> saveShow(@RequestBody Show show)
+	public ResponseEntity<ResponseStructure<Shows>> saveShow(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestBody Shows show)
 	{
-		return showService.saveShow(show);
+		return showService.saveShow(adminEmail, adminPassword, show);
 	}
 	
 	@GetMapping
-	public ResponseEntity<ResponseStructure<Show>> findShow(@RequestParam int showId)
+	public ResponseEntity<ResponseStructure<Shows>> findShow(@RequestParam int showId)
 	{
 		return showService.findShow(showId);
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<ResponseStructure<Show>> deleteShow(@RequestParam int showId)
+	public ResponseEntity<ResponseStructure<Shows>> deleteShow(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestParam int showId)
 	{
-		return showService.deleteShow(showId);
+		return showService.deleteShow(adminEmail, adminPassword, showId);
 	}
 	
 	@PutMapping
-	public ResponseEntity<ResponseStructure<Show>> updateShow(@RequestBody Show show,@RequestParam int showId)
+	public ResponseEntity<ResponseStructure<Shows>> updateShow(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestBody Shows show,@RequestParam int showId)
 	{
-		return showService.updateShow(show, showId);
+		return showService.updateShow(adminEmail, adminPassword, show, showId);
 	}
 
 }

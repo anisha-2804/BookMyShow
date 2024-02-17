@@ -23,9 +23,9 @@ public class TheatreController
 	TheatreService theatreService;
 	
 	@PostMapping
-	public ResponseEntity<ResponseStructure<Theatre>> saveTheatre(@RequestBody Theatre theatre)
+	public ResponseEntity<ResponseStructure<Theatre>> saveTheatre(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestBody Theatre theatre)
 	{
-		return theatreService.saveTheatre(theatre);
+		return theatreService.saveTheatre(adminEmail, adminPassword, theatre);
 	}
 	
 	@GetMapping
@@ -35,15 +35,15 @@ public class TheatreController
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<ResponseStructure<Theatre>> deleteTheatre(@RequestParam int theatreId)
+	public ResponseEntity<ResponseStructure<Theatre>> deleteTheatre(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestParam int theatreId)
 	{
-		return theatreService.deleteTheatre(theatreId);
+		return theatreService.deleteTheatre(adminEmail, adminPassword, theatreId);
 	}
 	
 	@PutMapping
-	public ResponseEntity<ResponseStructure<Theatre>> updateTheatre(@RequestBody Theatre theatre,@RequestParam int theatreId)
+	public ResponseEntity<ResponseStructure<Theatre>> updateTheatre(@RequestParam String adminEmail,@RequestParam String adminPassword,@RequestBody Theatre theatre,@RequestParam int theatreId)
 	{
-		return theatreService.updateTheatre(theatre, theatreId);
+		return theatreService.updateTheatre(adminEmail, adminPassword, theatre, theatreId);
 	}
 
 

@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.springboot.bookmyshow.entity.User;
 import com.springboot.bookmyshow.repository.UserRepo;
 
+@Repository
 public class UserDao 
 {
 	@Autowired
@@ -48,6 +51,11 @@ public class UserDao
 		List<User> users = userRepo.findAll();
 		return users;
 		
+	}
+	
+	public User userLogin(String userEmail,String userPassword)
+	{
+		return userRepo.userLogin(userEmail, userPassword);
 	}
 
 }
